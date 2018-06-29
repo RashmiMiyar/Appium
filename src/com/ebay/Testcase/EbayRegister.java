@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -43,7 +46,7 @@ public class EbayRegister extends Base{
         }*/
 		firstName=list.get(0);
 		lastName=list.get(1);
-		email=list.get(2);
+		email="hgf078l@jgj.com";//list.get(2);
     	password=uti.Propertyfile();
 
 	}
@@ -58,12 +61,34 @@ public class EbayRegister extends Base{
 			sendKeys(driver, ElementEbay.email, email);			
    			sendKeys(driver, ElementEbay.passowrd, password);			
         timeToWait(driver,80);
-		click(driver,ElementEbay.returnHome);		
+        click(driver,ElementEbay.registerToSign);
+        timeToWait(driver,80);
+			sendKeys(driver, ElementEbay.address1, "banglore");
+			sendKeys(driver, ElementEbay.address2, "banglore");			
+
+			sendKeys(driver, ElementEbay.city, "banglore");			
+			sendKeys(driver, ElementEbay.zip, "123456");
+            sendKeys(driver,ElementEbay.phone,"9650011731");
+         String mailid= driver.findElement(ElementEbay.email).getText();
+         
+         System.out.println(mailid);
+         Assert.assertEquals(email, mailid);
+
+         click(driver,ElementEbay.state); 
+       List<WebElement> stateList=  driver.findElements(ElementEbay.selectStatelist);
+       stateList.get(2).click();
+         click(driver,ElementEbay.checkbox);
+         click(driver,ElementEbay.continueBtn);
+         timeToWait(driver,80);
+         String getName=driver.findElement(ElementEbay.getNameAfterRegister).getText();//Hi Rashmi! 
+         String expectName="Hi "+firstName+"!";
+         Assert.assertEquals(getName, expectName);
+		//click(driver,ElementEbay.returnHome);		
 
 	}
 	
 	@AfterTest
     public void terminatedriver() throws MalformedURLException {
-		terminate(driver);
+		//terminate(driver);
 	}
 }
