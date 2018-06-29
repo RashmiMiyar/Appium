@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="Testing for ebayregister(failed)">
     <classes>
       <class name="com.ebay.Testcase.EbayRegister">
         <methods>
           <include name="setUpdriver"/>
           <include name="terminatedriver"/>
           <include name="register"/>
+          <include name="getdata"/>
         </methods>
       </class> <!-- com.ebay.Testcase.EbayRegister -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Testing for ebayregister(failed) -->
+</suite> <!-- Failed suite [Suite] -->
